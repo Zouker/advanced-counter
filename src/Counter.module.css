@@ -1,0 +1,98 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px auto;
+    width: 1024px;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 370px;
+    height: 250px;
+    margin: 50px auto;
+    border: 3px solid #64D8FB;
+    border-radius: 10px;
+}
+
+.settingsBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 130px;
+    margin: auto;
+    border: 2px solid #64D8FB;
+    border-radius: 10px;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 280px;
+    height: 50px;
+    border: 2px solid #64D8FB;
+    border-radius: 10px;
+}
+
+.counterBoard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 280px;
+    height: 130px;
+    color: black;
+    font-size: 70px;
+    border: 2px solid #64D8FB;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+.red {
+    color: red;
+}
+
+.textSize {
+    font-size: 22px;
+    color: #64D8FB;
+}
+
+.button {
+    margin: 10px;
+    width: 80px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: #64D8FB;
+}
+
+.button:hover {
+    box-shadow: 0 0 15px #64D8FB;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: black;
+    color: #64D8FB;
+}
+
+@media screen and (max-width: 920px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}
+
+input {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    outline: none;
+    border: 2px solid #64D8FB;
+}
