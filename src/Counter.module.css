@@ -14,6 +14,7 @@
     margin: 50px auto;
     border: 3px solid #64D8FB;
     border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .settingsBlock {
@@ -26,6 +27,30 @@
     margin: auto;
     border: 2px solid #64D8FB;
     border-radius: 10px;
+    color: #64D8FB;
+}
+
+.defaultInput {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    outline: none;
+    border: 2px solid #64D8FB;
+}
+
+.errorInput {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    outline: none;
+    border: 2px solid #f81b1b;
+    background-color: #e37c8f;
 }
 
 .buttonsBlock {
@@ -46,20 +71,25 @@
     margin: auto;
     width: 280px;
     height: 130px;
-    color: black;
+    color: #64D8FB;
     font-size: 70px;
     border: 2px solid #64D8FB;
     font-weight: bold;
     border-radius: 1rem;
 }
 
-.red {
+.text {
+    font-size: 22px;
+    color: #64D8FB;
+}
+
+.textError {
+    font-size: 22px;
     color: red;
 }
 
-.textSize {
-    font-size: 22px;
-    color: #64D8FB;
+.red {
+    color: red;
 }
 
 .button {
@@ -76,23 +106,14 @@
 }
 
 .button:disabled {
+    box-shadow: none;
     background-color: black;
     color: #64D8FB;
+    border: 1px solid #64D8FB;
 }
 
 @media screen and (max-width: 920px) {
     .wrapper {
         flex-direction: column;
     }
-}
-
-input {
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    color: black;
-    outline: none;
-    border: 2px solid #64D8FB;
 }
