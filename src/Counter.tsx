@@ -15,6 +15,19 @@ export const Counter = () => {
     const [disabledReset, setDisabledReset] = useState(true)
     const [text, setText] = useState<TextType>(`enter values and press 'set'`)
     const [isPreview, setIsPreview] = useState(true)
+
+    const incDisabled = disabledInc || count === maxValue
+    const resetDisabled = disabledReset || count === startValue
+
+    const scoreboardClassname = count === maxValue ? `${s.counterBoard} ${s.red}` : `${s.counterBoard}`
+
+    const displayTextClassName = text === `Incorrect value!` ? `${s.counterBoard} ${s.textError}` : `${s.counterBoard} ${s.text}`
+
+    const startValueActive = startValueError ? s.errorInput : s.defaultInput
+    const maxValueActive = maxValueError ? s.errorInput : s.defaultInput
+
+    const isViewText = isPreview || startValue < 0 || maxValue < 0
+
     useEffect(() => {
         let valueStartValueAsString = localStorage.getItem('startValue')
         if (valueStartValueAsString) {
@@ -100,21 +113,6 @@ export const Counter = () => {
         setDisabledReset(true)
         setStartValue(+e.currentTarget.value)
     }
-
-    const incDisabled = disabledInc || count === maxValue
-    const resetDisabled = disabledReset || count === startValue
-
-    const scoreboardClassname = count === maxValue ? `${s.counterBoard} ${s.red}` : `${s.counterBoard}`
-
-    const displayTextClassName = text === `Incorrect value!` ? `${s.counterBoard} ${s.textError}` : `${s.counterBoard} ${s.text}`
-
-    const startValueActive = startValueError ? s.errorInput : s.defaultInput
-    const maxValueActive = maxValueError ? s.errorInput : s.defaultInput
-
-    const isViewText = isPreview || startValue < 0 || maxValue < 0
-    console.log('startValue', startValue)
-    console.log('maxValue', maxValue)
-
 
     return (
         <div className={s.wrapper}>
