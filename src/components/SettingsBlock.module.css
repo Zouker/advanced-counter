@@ -1,0 +1,35 @@
+.settingsBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 130px;
+    margin: auto;
+    border: 2px solid #64D8FB;
+    border-radius: 10px;
+    color: #64D8FB;
+}
+
+.defaultInput {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    outline: none;
+    border: 2px solid #64D8FB;
+}
+
+.errorInput {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    outline: none;
+    border: 2px solid #f81b1b;
+    background-color: #e37c8f;
+}

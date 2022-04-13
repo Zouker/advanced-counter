@@ -1,0 +1,27 @@
+.counterBoard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 280px;
+    height: 130px;
+    color: #64D8FB;
+    font-size: 70px;
+    border: 2px solid #64D8FB;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+.text {
+    font-size: 22px;
+    color: #64D8FB;
+}
+
+.textError {
+    font-size: 22px;
+    color: red;
+}
+
+.red {
+    color: red;
+}

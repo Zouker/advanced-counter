@@ -1,6 +1,6 @@
 .wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin: 100px auto;
     width: 1024px;
 }
@@ -8,49 +8,13 @@
 .counter {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     width: 370px;
     height: 250px;
     margin: 50px auto;
     border: 3px solid #64D8FB;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.3);
-}
-
-.settingsBlock {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 280px;
-    height: 130px;
-    margin: auto;
-    border: 2px solid #64D8FB;
-    border-radius: 10px;
-    color: #64D8FB;
-}
-
-.defaultInput {
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    color: black;
-    outline: none;
-    border: 2px solid #64D8FB;
-}
-
-.errorInput {
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    color: black;
-    outline: none;
-    border: 2px solid #f81b1b;
-    background-color: #e37c8f;
 }
 
 .buttonsBlock {
@@ -62,34 +26,6 @@
     height: 50px;
     border: 2px solid #64D8FB;
     border-radius: 10px;
-}
-
-.counterBoard {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto;
-    width: 280px;
-    height: 130px;
-    color: #64D8FB;
-    font-size: 70px;
-    border: 2px solid #64D8FB;
-    font-weight: bold;
-    border-radius: 1rem;
-}
-
-.text {
-    font-size: 22px;
-    color: #64D8FB;
-}
-
-.textError {
-    font-size: 22px;
-    color: red;
-}
-
-.red {
-    color: red;
 }
 
 .button {
@@ -112,8 +48,9 @@
     border: 1px solid #64D8FB;
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (min-width: 375px) and (max-width: 1024px) {
     .wrapper {
         flex-direction: column;
+        justify-content: center;
     }
 }

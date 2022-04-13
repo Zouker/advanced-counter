@@ -1,6 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Counter.module.css'
 import {Button} from './components/Button';
+import {SettingsBlock} from './components/SettingsBlock';
+import {DisplayBlock} from './components/DisplayBlock';
 
 export type TextType = `enter values and press 'set'` | `Incorrect value!`
 
@@ -8,8 +10,6 @@ export const Counter = () => {
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
     const [count, setCount] = useState<number>(startValue)
-    const [startValueError, setStartValueError] = useState(false)
-    const [maxValueError, setMaxValueError] = useState(false)
     const [disabled, setDisabled] = useState(true)
     const [disabledInc, setDisabledInc] = useState(true)
     const [disabledReset, setDisabledReset] = useState(true)
@@ -18,15 +18,6 @@ export const Counter = () => {
 
     const incDisabled = disabledInc || count === maxValue
     const resetDisabled = disabledReset || count === startValue
-
-    const scoreboardClassname = count === maxValue ? `${s.counterBoard} ${s.red}` : `${s.counterBoard}`
-
-    const displayTextClassName = text === `Incorrect value!` ? `${s.counterBoard} ${s.textError}` : `${s.counterBoard} ${s.text}`
-
-    const startValueActive = startValueError ? s.errorInput : s.defaultInput
-    const maxValueActive = maxValueError ? s.errorInput : s.defaultInput
-
-    const isViewText = isPreview || startValue < 0 || maxValue < 0
 
     useEffect(() => {
         let valueStartValueAsString = localStorage.getItem('startValue')
@@ -40,7 +31,6 @@ export const Counter = () => {
             setMaxValue(newValue)
         }
     }, [])
-
     useEffect(() => {
         localStorage.setItem('startValue', JSON.stringify(startValue))
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
@@ -55,7 +45,6 @@ export const Counter = () => {
         setDisabledInc(false)
         setDisabledReset(false)
     }
-
     const incHandler = () => {
         if (count < maxValue) {
             setCount(state => state + 1)
@@ -68,71 +57,19 @@ export const Counter = () => {
         setDisabledInc(true)
     }
 
-    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const isIncorrectValue = startValue === +e.currentTarget.value || +e.currentTarget.value < 0 || startValue > +e.currentTarget.value
-        if (isIncorrectValue) {
-
-            setStartValueError(true)
-            setMaxValueError(true)
-            setText('Incorrect value!')
-            setDisabled(true)
-        } else if (+e.currentTarget.value >= 0 && startValue >= 0) {
-
-            setStartValueError(false)
-            setMaxValueError(false)
-            setText(`enter values and press 'set'`)
-            setDisabled(false)
-        } else if (startValue < 0) {
-
-            setStartValueError(true)
-            setMaxValueError(false)
-            setDisabled(true)
-        }
-        setDisabledReset(true)
-        setMaxValue(+e.currentTarget.value)
-    }
-
-    const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const isIncorrectValue = +e.currentTarget.value === maxValue || maxValue < 0 || +e.currentTarget.value > maxValue
-        if (isIncorrectValue) {
-            console.log('isIncorrectValue')
-            setStartValueError(true)
-            setMaxValueError(true)  ///!
-            setText('Incorrect value!')
-            setDisabled(true)
-        } else if (+e.currentTarget.value >= 0 && maxValue >= 0) {
-            setStartValueError(false)
-            setMaxValueError(false) ////!
-            setText(`enter values and press 'set'`)
-            setDisabled(false)
-        } else if (+e.currentTarget.value < 0) {
-            setStartValueError(true)
-            setMaxValueError(false)
-            setDisabled(true)
-        }
-        setDisabledReset(true)
-        setStartValue(+e.currentTarget.value)
-    }
-
     return (
         <div className={s.wrapper}>
             <div className={s.counter}>
-                <div className={s.settingsBlock}>
-                    <div className={s.settingsBlockInput}>
-                        <span>max value:</span>
-                        <input className={maxValueActive} onChange={onChangeMaxValueHandler}
-                               type={'number'}
-                               value={maxValue}
-                        />
-                    </div>
-                    <div className={s.settingsBlockInput}>
-                        <span>start value:</span>
-                        <input className={startValueActive} onChange={onChangeStartValueHandler}
-                               type={'number'}
-                               value={startValue}
-                        />
-                    </div>
-                </div>
+                <SettingsBlock startValue={startValue}
+                               maxValue={maxValue}
+                               disabled={disabled}
+                               setDisabled={setDisabled}
+                               setDisabledInc={setDisabledInc}
+                               setDisabledReset={setDisabledReset}
+                               setText={setText}
+                               setStartValue={setStartValue}
+                               setMaxValue={setMaxValue}
+                />
                 <div className={s.buttonsBlock}>
                     <div>
                         <Button title={'set'}
@@ -144,15 +81,12 @@ export const Counter = () => {
                 </div>
             </div>
             <div className={s.counter}>
-                {isViewText
-                    ?
-                    <div className={displayTextClassName}>
-                        {text}
-                    </div>
-                    : <div className={scoreboardClassname}>
-                        {count}
-                    </div>}
-
+                <DisplayBlock text={text}
+                              count={count}
+                              isPreview={isPreview}
+                              startValue={startValue}
+                              maxValue={maxValue}
+                />
                 <div className={s.buttonsBlock}>
                     <div>
                         <Button callback={incHandler}
