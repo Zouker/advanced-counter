@@ -10,7 +10,7 @@ export const Counter = () => {
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
     const [count, setCount] = useState<number>(startValue)
-    const [disabled, setDisabled] = useState(true)
+    const [disabled, setDisabled] = useState(false)
     const [disabledInc, setDisabledInc] = useState(true)
     const [disabledReset, setDisabledReset] = useState(true)
     const [text, setText] = useState<TextType>(`enter values and press 'set'`)
@@ -24,6 +24,7 @@ export const Counter = () => {
         if (valueStartValueAsString) {
             let newValue = JSON.parse(valueStartValueAsString)
             setStartValue(newValue)
+            setCount(newValue)
         }
         let valueMaxValueAsString = localStorage.getItem('maxValue')
         if (valueMaxValueAsString) {
@@ -53,7 +54,7 @@ export const Counter = () => {
     const resetHandler = () => {
         setCount(startValue)
         setDisabled(false)
-        setIsPreview(true)
+        setIsPreview(false)
         setDisabledInc(true)
     }
 

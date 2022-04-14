@@ -9,8 +9,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 370px;
-    height: 250px;
+    width: 350px;
+    height: 270px;
     margin: 50px auto;
     border: 3px solid #64D8FB;
     border-radius: 10px;
@@ -48,7 +48,7 @@
     border: 1px solid #64D8FB;
 }
 
-@media screen and (min-width: 375px) and (max-width: 660px) {
+@media screen and (min-width: 320px) and (max-width: 660px) {
     .wrapper {
         flex-direction: column;
         width: 100%;
