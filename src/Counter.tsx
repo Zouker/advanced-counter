@@ -4,20 +4,11 @@ import {Button} from './components/Button';
 import {SettingsBlock} from './components/SettingsBlock';
 import {DisplayBlock} from './components/DisplayBlock';
 
-export type TextType = `enter values and press 'set'` | `Incorrect value!`
-
 export const Counter = () => {
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
     const [count, setCount] = useState<number>(startValue)
-    const [disabled, setDisabled] = useState(false)
-    const [disabledInc, setDisabledInc] = useState(true)
-    const [disabledReset, setDisabledReset] = useState(true)
-    const [text, setText] = useState<TextType>(`enter values and press 'set'`)
     const [isPreview, setIsPreview] = useState(true)
-
-    const incDisabled = disabledInc || count === maxValue
-    const resetDisabled = disabledReset || count === startValue
 
     useEffect(() => {
         let valueStartValueAsString = localStorage.getItem('startValue')
@@ -42,9 +33,6 @@ export const Counter = () => {
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
         setCount(startValue)
         setIsPreview(false)
-        setDisabled(true)
-        setDisabledInc(false)
-        setDisabledReset(false)
     }
     const incHandler = () => {
         if (count < maxValue) {
@@ -53,21 +41,13 @@ export const Counter = () => {
     }
     const resetHandler = () => {
         setCount(startValue)
-        setDisabled(false)
-        setIsPreview(false)
-        setDisabledInc(true)
     }
 
     return (
         <div className={s.wrapper}>
             <div className={s.counter}>
-                <SettingsBlock startValue={startValue}
+                <SettingsBlock setIsPreview={setIsPreview} startValue={startValue}
                                maxValue={maxValue}
-                               disabled={disabled}
-                               setDisabled={setDisabled}
-                               setDisabledInc={setDisabledInc}
-                               setDisabledReset={setDisabledReset}
-                               setText={setText}
                                setStartValue={setStartValue}
                                setMaxValue={setMaxValue}
                 />
@@ -76,29 +56,29 @@ export const Counter = () => {
                         <Button title={'set'}
                                 callback={setHandler}
                                 className={s.button}
-                                disabled={disabled}
+                                disabled={startValue >= maxValue || startValue < 0 || !isPreview}
                         />
                     </div>
                 </div>
             </div>
             <div className={s.counter}>
-                <DisplayBlock text={text}
-                              count={count}
-                              isPreview={isPreview}
-                              startValue={startValue}
-                              maxValue={maxValue}
+                <DisplayBlock
+                    text={startValue < 0 || maxValue < 0 || startValue === maxValue || startValue > maxValue ? `Incorrect value!` : `enter values and press 'set'`}
+                    count={count}
+                    isPreview={isPreview}
+                    maxValue={maxValue}
                 />
                 <div className={s.buttonsBlock}>
                     <div>
                         <Button callback={incHandler}
                                 className={s.button}
-                                disabled={incDisabled}
+                                disabled={count === maxValue || isPreview}
                                 title={'inc'}
                         />
                     </div>
                     <div>
                         <Button title={'reset'}
-                                disabled={resetDisabled}
+                                disabled={count === startValue || isPreview}
                                 className={s.button}
                                 callback={resetHandler}/>
                     </div>

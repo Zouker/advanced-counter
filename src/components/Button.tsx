@@ -4,7 +4,7 @@ type PropsType = {
     title: string
     callback: () => void
     className: string
-    disabled: boolean
+    disabled?: boolean
 }
 
 export const Button: React.FC<PropsType> = ({title, callback, className, ...props}) => {
