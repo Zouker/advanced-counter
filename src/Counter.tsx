@@ -25,11 +25,7 @@ export const Counter = () => {
     return (
         <div className={s.wrapper}>
             <div className={s.counter}>
-                <SettingsBlock
-                    startValue={startValue}
-                    maxValue={maxValue}
-
-                />
+                <SettingsBlock/>
                 <div className={s.buttonsBlock}>
                     <div>
                         <Button title={'set'}
@@ -41,12 +37,7 @@ export const Counter = () => {
                 </div>
             </div>
             <div className={s.counter}>
-                <DisplayBlock
-                    text={startValue < 0 || maxValue < 0 || startValue === maxValue || startValue > maxValue ? `Incorrect value!` : `enter values and press 'set'`}
-                    count={count}
-                    // isPreview={isPreview}
-                    maxValue={maxValue}
-                />
+                <DisplayBlock/>
                 <div className={s.buttonsBlock}>
                     <div>
                         <Button callback={incHandler}

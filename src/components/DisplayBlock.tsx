@@ -1,32 +1,25 @@
 import React from 'react';
 import s from './DisplayBlock.module.css';
 import {useSelector} from 'react-redux';
-import {CounterStateType} from '../bll/counter-reducer';
 import {AppStateType} from '../bll/store';
+import {CounterStateType} from '../bll/counter-reducer';
 
-type PropsType = {
-    text: string
-    count: number
-    maxValue: number
-}
-
-export const DisplayBlock: React.FC<PropsType> = ({
-                                                      text,
-                                                      count,
-                                                      maxValue,
-                                                  }) => {
-    const data = useSelector<AppStateType, CounterStateType>(state => state.counter)
+export const DisplayBlock = () => {
+    const {count, startValue, maxValue, isPreview} = useSelector<AppStateType, CounterStateType>(state => state.counter)
 
     const scoreboardClassname = count === maxValue ? `${s.counterBoard} ${s.red}` : `${s.counterBoard}`
 
-    const displayTextClassName = text === `Incorrect value!` ? `${s.counterBoard} ${s.textError}` : `${s.counterBoard} ${s.text}`
     return (
         <>
-            {data.isPreview
+            {isPreview
                 ?
                 <div
-                    className={displayTextClassName}>
-                    {text}
+                    className={startValue < 0 || maxValue < 0 || startValue === maxValue || startValue > maxValue
+                        ? `${s.counterBoard} ${s.textError}`
+                        : `${s.counterBoard} ${s.text}`}>
+                    {startValue < 0 || maxValue < 0 || startValue === maxValue || startValue > maxValue
+                        ? `Incorrect value!`
+                        : `enter values and press 'set'`}
                 </div>
                 : <div className={scoreboardClassname}>
                     {count}
